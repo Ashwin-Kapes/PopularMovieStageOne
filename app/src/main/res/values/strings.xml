@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">P1:Popular Movies</string>
+    <string name="error_title">ERROR</string>
+    <string name="error_message">UNKNOWN ERROR OCCURRED</string>
+    <string name="error_ok_button_text">OK</string>
+    <string name="network_unavailable_message">NETWORK UNAVAILABLE</string>
+    <string name="title_activity_detail_of_movie">Movie Details</string>
+    <string name="action_popular">Sort by Popular</string>
+    <string name="action_rating">Sort by Rating</string>
+    <string name="rating_text">"Rating: "</string>
+    <string name="release_text">"Release: "</string>
+    <string name="rating_api">http://api.themoviedb.org/3/movie/top_rated?api_key=</string>
+    <string name="popular_api">http://api.themoviedb.org/3/movie/popular?api_key=</string>
+    <string name="api_key">YOUR API KEY HERE</string>
+    <string name="exception">"EXCEPTION: "</string>
+    <string name="fill_rating">" / 10"</string>
+    <string name="Image">Content</string>
+</resources>
