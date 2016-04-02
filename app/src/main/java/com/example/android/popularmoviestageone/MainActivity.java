@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,32 +28,32 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends Activity {
+    public static final String TAG = MainActivity.class.getSimpleName();
     public Movie[] mMovie;
     private String mSort = "";
-    public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (mSort.isEmpty()) {
-            mSort = "popular";
+            mSort = "popularity.desc";
         }
         getMovies(mSort);
     }
 
     private void getMovies(String sort) {
         String apiKey = getString(R.string.api_key);
-
-        String movieDbUrl = "";
-        String movieDbUrlRating = getString(R.string.rating_api) + apiKey;
-        String movieDbUrlPopular = getString(R.string.popular_api) + apiKey;
-        if (sort.equals("popular")) {
-            movieDbUrl = movieDbUrlPopular;
-        }
-        if (sort.equals("rating")) {
-            movieDbUrl = movieDbUrlRating;
-        }
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("discover")
+                .appendPath("movie")
+                .appendQueryParameter("sort_by", sort)
+                .appendQueryParameter("api_key", apiKey);
+        String movieDbUrl = builder.build().toString();
+        Log.v("URL", "URL"+movieDbUrl);
 
         if (isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
@@ -75,7 +76,7 @@ public class MainActivity extends Activity {
                         if (response.isSuccessful()) {
                             try {
                                 mMovie = setMovies(jsonData);
-                                Log.e("JSONDATA","MainResponse: "+ jsonData);
+                                Log.e("JSONDATA", "MainResponse: " + jsonData);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -156,16 +157,16 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_popular) {
-            if (!mSort.equals("popular")) {
-                mSort = "popular";
+            if (!mSort.equals("popularity.desc")) {
+                mSort = "popularity.desc";
                 setContentView(R.layout.activity_main);
                 getMovies(mSort);
             }
 
         }
         if (id == R.id.action_rating) {
-            if (!mSort.equals("rating")) {
-                mSort = "rating";
+            if (!mSort.equals("vote_average.desc")) {
+                mSort = "vote_average.desc";
                 setContentView(R.layout.activity_main);
                 getMovies(mSort);
             }

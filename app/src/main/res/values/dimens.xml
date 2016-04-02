@@ -5,4 +5,10 @@
     <dimen name="grid_item_movie_width">150dp</dimen>
     <dimen name="grid_item_movie_spacing">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="title_text">20dp</dimen>
+    <dimen name="summary_text">15sp</dimen>
+    <dimen name="detail_image_max_width">200dp</dimen>
+    <dimen name="detail_image_max_height">200dp</dimen>
+    <dimen name="margin_bottom_10">10dp</dimen>
+    <dimen name="margin_top_10">10dp</dimen>
 </resources>

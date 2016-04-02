@@ -25,7 +25,7 @@ public class DetailOfMovie extends Activity {
         TextView userRatingText = (TextView) findViewById(R.id.user_rating);
         ImageView moviePoster = (ImageView) findViewById(R.id.movie_imageView
         );
-        Picasso.with(this).load(imageUrl).into(moviePoster);
+        Picasso.with(this).load(imageUrl).error(R.mipmap.ic_launcher).into(moviePoster);
         title.setText(titleText);
         summery.setText(summeryText);
         userRatingText.setText(getString(R.string.rating_text) + userRating + getString(R.string.fill_rating));

@@ -61,15 +61,13 @@ public class MoviesAdapter extends BaseAdapter {
         final String backgroundUrl = "http://image.tmdb.org/t/p/w500" + mMovies[position].getBackgroundPath();
         final String releaseDate = mMovies[position].getReleaseDate();
         final String userRating = mMovies[position].getUserRating();
-        Picasso.with(parent.getContext()).load(imageUrl).into(holder.MovieImage);
+        Picasso.with(parent.getContext()).load(imageUrl).error(R.drawable.ic_action_name).into(holder.MovieImage);
         final Context mcon = parent.getContext();
         final int mpos = position;
         holder.MovieImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //  Toast.makeText(mcon, mpos + "", Toast.LENGTH_SHORT).show();
 
-                // mcon.startActivity(new Intent(mcon, DetailOfMovie.class));
 
                 Intent intent = new Intent(mcon,DetailOfMovie.class);
                 intent.putExtra("position", mpos + "");
